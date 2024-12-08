@@ -1,4 +1,6 @@
 fun main() {
+    data class D(val i: Int, val j: Int)
+
     val map by lazy {
         readInput("Day8").map { it.toCharArray() }
     }
@@ -6,7 +8,17 @@ fun main() {
     val n = map.size
     val m = map[0].size
 
-    data class D(val i: Int, val j: Int)
+    val antennas by lazy {
+        val res = HashMap<Char, MutableList<D>>()
+        for (i in 0 until n) {
+            for (j in 0 until m) {
+                if (map[i][j] != '.') {
+                    res.computeIfAbsent(map[i][j]) { mutableListOf() }.add(D(i, j))
+                }
+            }
+        }
+        res
+    }
 
     fun getAntinodes(a1: D, a2: D): Set<D> {
         val iDiff = a1.i - a2.i
@@ -39,16 +51,6 @@ fun main() {
     }
 
     fun part1(): Int {
-        val antennas = HashMap<Char, MutableList<D>>()
-
-        for (i in 0 until n) {
-            for (j in 0 until m) {
-                if (map[i][j] != '.') {
-                    antennas.computeIfAbsent(map[i][j]) { mutableListOf() }.add(D(i, j))
-                }
-            }
-        }
-
         val allAntinodes = mutableSetOf<D>()
         antennas.forEach { (_, nodes) ->
             for (i in nodes.indices) {
@@ -61,18 +63,7 @@ fun main() {
         return allAntinodes.filter { (i, j) -> i in 0 until n && j in 0 until m }.size
     }
 
-
     fun part2(): Int {
-        val antennas = HashMap<Char, MutableList<D>>()
-
-        for (i in 0 until n) {
-            for (j in 0 until m) {
-                if (map[i][j] != '.') {
-                    antennas.computeIfAbsent(map[i][j]) { mutableListOf() }.add(D(i, j))
-                }
-            }
-        }
-
         val allAntinodes = mutableSetOf<D>()
         antennas.forEach { (_, nodes) ->
             for (i in nodes.indices) {
