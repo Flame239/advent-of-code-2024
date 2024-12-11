@@ -1,6 +1,6 @@
 # Advent of Code 2024 in Kotlin
 
-![](https://img.shields.io/badge/day%20📅-10-blue) ![](https://img.shields.io/badge/stars%20⭐-16-yellow)
+![](https://img.shields.io/badge/day%20📅-11-blue) ![](https://img.shields.io/badge/stars%20⭐-16-yellow)
 
 ![Advent](https://www.pixelmancer.com.br/projects/advent-of-code.jpg)
 
